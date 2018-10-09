@@ -9,7 +9,7 @@ import (
 	"log"
 	"net/http"
 
-	HomeHandler "Projects/TruoraTest/src/controllers/home"
+	RecipeHandler "Projects/TruoraTest/src/controllers/recipes"
 )
 
 func Middleware(next http.Handler) http.Handler {
@@ -22,11 +22,10 @@ func Middleware(next http.Handler) http.Handler {
 func GetRoutes(db *xorm.Engine) routes.Routes {
 
 	//AuthHandler.Init(db)
-	HomeHandler.Init(db)
+	RecipeHandler.Init(db)
 
 	return routes.Routes{
-		routes.Route{"Home", "GET", "/", HomeHandler.Index},
-		//routes.Route{"AuthStore", "POST", "/auth/login", AuthHandler.Login},
-		//routes.Route{"AuthCheck", "GET", "/auth/check", AuthHandler.Check},
+		routes.Route{"Home", "GET", "/", RecipeHandler.Index},
+
 	}
 }

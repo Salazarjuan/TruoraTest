@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/go-xorm/xorm"
+	"github.com/gorilla/handlers"
 )
 
 type Server struct {

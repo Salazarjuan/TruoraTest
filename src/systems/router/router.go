@@ -2,6 +2,7 @@ package router
 
 import (
 	"Projects/TruoraTest/pkg/types/routes"
+	RecipesSubRoutes "Projects/TruoraTest/src/controllers/recipes/router"
 
 	"github.com/go-xorm/xorm"
 	"github.com/gorilla/mux"
@@ -23,11 +24,10 @@ func (r *Router) Init(db *xorm.Engine) {
 			Handler(route.HandlerFunc)
 	}
 
-	/*
-		v1SubRoutes := V1SubRoutes.GetRoutes(db)
-		for name, pack := range v1SubRoutes {
-			r.AttachSubRouterWithMiddleware(name, pack.Routes, pack.Middleware)
-		}*/
+	RecipesSubRoutes := RecipesSubRoutes.GetRoutes(db)
+	for name, pack := range RecipesSubRoutes {
+		r.AttachSubRouterWithMiddleware(name, pack.Routes, pack.Middleware)
+	}
 }
 
 func (r *Router) AttachSubRouterWithMiddleware(path string, subroutes routes.Routes, middleware mux.MiddlewareFunc) (SubRouter *mux.Router) {
