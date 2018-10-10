@@ -1,7 +1,7 @@
 package recipes
 
 import (
-	"github.com/go-xorm/xorm"
+"github.com/go-xorm/xorm"
 )
 
 var db *xorm.Engine

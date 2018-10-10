@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return db.createTable('recipes',{
+  return db.createTable('recipesV1',{
       id:{type:'int', primaryKey:true, autoIncrement:true},
       name:{type:'string', notNull:true},
       description:{type:'string', notNull:false},
@@ -26,7 +26,7 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-return db.dropTable('recipes');
+return db.dropTable('recipesV1');
 };
 
 

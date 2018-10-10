@@ -8,8 +8,8 @@ import (
 	//AuthHandler "Projects/TruoraTest/src/controllers/auth"
 	"log"
 	"net/http"
-
-	RecipeHandler "Projects/TruoraTest/src/controllers/recipes"
+	HomeHandler "Projects/TruoraTest/src/controllers/home"
+	RecipeHandler "Projects/TruoraTest/src/controllers/recipesV1/routes/recipes"
 )
 
 func Middleware(next http.Handler) http.Handler {
@@ -21,11 +21,11 @@ func Middleware(next http.Handler) http.Handler {
 
 func GetRoutes(db *xorm.Engine) routes.Routes {
 
-	//AuthHandler.Init(db)
 	RecipeHandler.Init(db)
+	HomeHandler.Init(db)
 
 	return routes.Routes{
-		routes.Route{"Home", "GET", "/", RecipeHandler.Index},
+		routes.Route{"Home", "GET", "/", HomeHandler.Index},
 
 	}
 }

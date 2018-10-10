@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"Projects/TruoraTest/pkg/types/routes"
-	RecipeHandler "Projects/TruoraTest/src/controllers/recipes"
+	RecipeHandler "Projects/TruoraTest/src/controllers/recipesV1/routes/recipes"
 
 	"github.com/go-xorm/xorm"
 )
@@ -13,17 +13,24 @@ import (
 var db *xorm.Engine
 
 func Middleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		token := r.Header.Get("X-App-Token")
-		if len(token) < 1 {
-			http.Error(w, "Not authorized", http.StatusUnauthorized)
-			return
-		}
 
-		log.Println("Inside V1 Middleware")
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		//token := r.Header.Get("X-App-Token")
+
+		/*if len(token) < 1 {
+			log.Println(token)
+			//log.Println(w)
+			//log.Println(r)
+			http.Error(w, "Not authorized into recipesV1", http.StatusUnauthorized)
+
+			return
+		}*/
+
+		log.Println("Inside recipesV1 Middleware")
 
 		next.ServeHTTP(w, r)
 	})
+
 }
 
 func GetRoutes(DB *xorm.Engine) (SubRoute map[string]routes.SubRoutePackage) {
@@ -33,10 +40,10 @@ func GetRoutes(DB *xorm.Engine) (SubRoute map[string]routes.SubRoutePackage) {
 
 	/* ROUTES */
 	SubRoute = map[string]routes.SubRoutePackage{
-		"/recipes": {
+		"/recipesV1": {
 			Routes: routes.Routes{
 				routes.Route{"RecipeIndex", "GET", "/", RecipeHandler.Index},
-				routes.Route{"RecipeCreate", "POST", "/create", RecipeHandler.Create},
+				routes.Route{"RecipeCreate", "GET", "/store", RecipeHandler.Store},
 				routes.Route{"RecipeEdit", "GET", "/{id}/edit", RecipeHandler.Edit},
 				routes.Route{"RecipeUpdate", "PUT", "/{id}", RecipeHandler.Update},
 				routes.Route{"RecipeDestroy", "DELETE", "/{id}", RecipeHandler.Destroy},
