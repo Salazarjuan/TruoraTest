@@ -7,6 +7,7 @@ import (
 )
 
 type Recipe struct {
+	Id string `json:id`
 	Name string `json: name`
 	Description string `jason: description`
 	Oven bool `json: oven`
@@ -16,6 +17,7 @@ type Recipe struct {
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	recipe := Recipe{
+		Id:"",
 		Name: "recipe name",
 		Description: "recipe description",
 		Oven: true,

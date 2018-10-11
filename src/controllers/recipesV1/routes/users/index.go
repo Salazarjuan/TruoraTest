@@ -1,25 +1,35 @@
-package recipes
+package users
 
 import (
+	Users "Projects/TruoraTest/src/controllers/recipesv1/models/users"
+
+	"encoding/json"
+	"log"
 	"net/http"
+	"strconv"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Recipies idex"))
-}
+	var offset int
+	limit := int(25)
 
-func Update(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Recipies update"))
-}
+	if keys, ok := r.URL.Query()["limit"]; ok {
+		limit, _ = strconv.Atoi(keys[0])
+	}
+	if keys, ok := r.URL.Query()["page"]; ok {
+		page, _ := strconv.Atoi(keys[0])
+		offset = (page - 1) * limit
+	}
 
-func Create(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Recipies create"))
-}
+	users, err := Users.FindBy(db, limit, offset)
 
-func Edit(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Recipies edit"))
-}
+	packet, err := json.Marshal(users)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Unable to parse users", http.StatusUnauthorized)
+		return
+	}
 
-func Destroy(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Recipies destroy"))
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(packet)
 }

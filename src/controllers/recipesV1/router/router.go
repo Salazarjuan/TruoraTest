@@ -43,7 +43,7 @@ func GetRoutes(DB *xorm.Engine) (SubRoute map[string]routes.SubRoutePackage) {
 		"/recipesV1": {
 			Routes: routes.Routes{
 				routes.Route{"RecipeIndex", "GET", "/", RecipeHandler.Index},
-				routes.Route{"RecipeCreate", "GET", "/store", RecipeHandler.Store},
+				routes.Route{"RecipeCreate", "POST", "/store", RecipeHandler.Store},
 				routes.Route{"RecipeEdit", "GET", "/{id}/edit", RecipeHandler.Edit},
 				routes.Route{"RecipeUpdate", "PUT", "/{id}", RecipeHandler.Update},
 				routes.Route{"RecipeDestroy", "DELETE", "/{id}", RecipeHandler.Destroy},

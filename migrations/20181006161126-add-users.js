@@ -19,7 +19,7 @@ exports.up = function(db) {
       id:{type:'int',primaryKey:true,autoIncrement:true},
       first:{type:'string', notNull:true},
       last:{type:'string', notNull:true},
-      emain:{type:'string', notNull:true, length:200},
+      email:{type:'string', notNull:true, length:200},
       password:{type:'string', notNull:true, length:200}
     });
 };

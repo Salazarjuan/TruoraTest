@@ -1,4 +1,4 @@
-package pkg
+package main
 
 import (
 	"database/sql"
@@ -9,30 +9,18 @@ import (
 	"log"
 	"os"
 	"strings"
-
 	_ "github.com/go-sql-driver/mysql"
 )
 
 var defaults = Configuration{
-	DbUser:          "db_user",
-	DbPassword:      "db_pw",
-	DbName:          "db_name",
-	PkgName:         "DbStructs",
-	TagLabel:        "db",
-	Xorm:            false,
-	OnlyBaseTables:  false,
-	IgnoreNullables: false,
-
-	/*
-			DbUser: "root",
-		    DbPassword: "admin",
-		    DbName: "test",
-		    PkgName: "db",
-		    TagLabel: "xorm",
-		    Xorm: true,
-		    OnlyBaseTables: true,
-			IgnoreNullables: true,
-	*/
+	DbUser: "root",
+	DbPassword: "admin",
+	DbName: "test",
+	PkgName: "db",
+	TagLabel: "xorm",
+	Xorm: true,
+	OnlyBaseTables: true,
+	IgnoreNullables: true,
 }
 
 var config Configuration

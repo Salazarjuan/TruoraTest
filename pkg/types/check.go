@@ -1,7 +1,7 @@
 package session
 
 import (
-	"learning-golang/api.example.com/system/jwt"
+	"Projects/TruoraTest/src/systems/jwt"
 
 	"encoding/json"
 	"log"
