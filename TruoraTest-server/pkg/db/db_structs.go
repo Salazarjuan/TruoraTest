@@ -46,7 +46,7 @@ func (t Recipe) GetId() int64 {
 
 type Step struct{
 	Id int64	`xorm:"'id' pk autoincr" json:"id" schema:"id"`
-	Step string	`xorm:"steps" json:"steps" schema:"steps"`
+	Step string	`xorm:"step" json:"step" schema:"step"`
 	RecipeID int64	`xorm:"recipeID" json:"recipeID" schema:"recipeID"`
 }
 
