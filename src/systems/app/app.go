@@ -1,7 +1,7 @@
 package app
 
 import (
-	"Projects/TruoraTest/src/systems/router"
+	"Projects/TruoraTest-server/src/systems/router"
 	"log"
 	"net/http"
 	"os"

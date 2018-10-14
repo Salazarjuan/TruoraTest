@@ -1,8 +1,8 @@
 package jwt
 
 import (
-	Users "Projects/TruoraTest/pkg/types/users"
-	ORM "Projects/TruoraTest/src/systems/db"
+	Users "Projects/TruoraTest-server/pkg/types/users"
+	ORM "Projects/TruoraTest-server/src/systems/db"
 
 	"errors"
 	"github.com/go-xorm/xorm"

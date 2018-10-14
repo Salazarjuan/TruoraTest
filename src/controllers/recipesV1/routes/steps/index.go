@@ -1,7 +1,7 @@
-package recipes
+package steps
 
 import (
-	Recipes "Projects/TruoraTest-server/src/controllers/recipesV1/models/recipes"
+	Steps "Projects/TruoraTest-server/src/controllers/recipesV1/models/steps"
 	"log"
 
 	"encoding/json"
@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-var recipe Recipes.Recipe
+var step Steps.Step
 
 func Index(w http.ResponseWriter, r *http.Request) {
 
@@ -24,17 +24,15 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		offset = (page - 1) * limit
 	}
 
-	recipes, err := Recipes.FindBy(db, limit, offset)
+	steps, err := Steps.FindBy(db, limit, offset)
 
-	packet, err := json.Marshal(recipes)
+	packet, err := json.Marshal(steps)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Unable to parse recipes", http.StatusUnauthorized)
+		http.Error(w, "Unable to parse steps", http.StatusUnauthorized)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(packet)
 }
-
-

@@ -1,7 +1,7 @@
 package session
 
 import (
-	"Projects/TruoraTest/src/systems/jwt"
+	"Projects/TruoraTest-server/src/systems/jwt"
 
 	"encoding/json"
 	"log"

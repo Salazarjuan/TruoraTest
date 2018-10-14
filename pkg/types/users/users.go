@@ -1,13 +1,13 @@
 package users
 
 import (
-	"Projects/TruoraTest/pkg/db"
+	"Projects/TruoraTest-server/pkg/db"
 )
 
 type Users []User
 
 type User db.Users
 
-func (u *User) TableName() string {
+func (u *Users) TableName() string {
 	return "users"
 }

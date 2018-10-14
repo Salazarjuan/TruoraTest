@@ -1,8 +1,9 @@
 package main
 
 import (
-	"Projects/TruoraTest/src/systems/app"
-	DB "Projects/TruoraTest/src/systems/db"
+	"Projects/TruoraTest-server/src/systems/app"
+	DB "Projects/TruoraTest-server/src/systems/db"
+	"log"
 
 	"flag"
 	"os"
@@ -58,11 +59,12 @@ func init() {
 func main() {
 	db, err := DB.Connect(dbhost, dbport, dbuser, dbpass, dbdatabase, dboptions)
 	if err != nil {
+		log.Println("cannot connect to DB")
 		panic(err)
 	}
 
 	s := app.NewServer()
 
-	s.Init(port, db)
+	s.Init(port, db	)
 	s.Start()
 }

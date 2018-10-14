@@ -1,10 +1,10 @@
 package session
 
 import (
-	Users "Projects/TruoraTest/pkg/types/users"
-	ORM "Projects/TruoraTest/src/systems/db"
-	"Projects/TruoraTest/src/systems/jwt"
-	Passwords "Projects/TruoraTest/src/systems/passwords"
+	Users "Projects/TruoraTest-server/pkg/types/users"
+	ORM "Projects/TruoraTest-server/src/systems/db"
+	"Projects/TruoraTest-server/src/systems/jwt"
+	Passwords "Projects/TruoraTest-server/src/systems/passwords"
 
 	"encoding/json"
 	"log"

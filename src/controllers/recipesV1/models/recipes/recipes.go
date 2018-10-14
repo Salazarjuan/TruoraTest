@@ -1,11 +1,11 @@
 package recipes
 
-import "Projects/TruoraTest/pkg/db"
+import "Projects/TruoraTest-server/pkg/db"
 
 type Recipes []Recipe
 
-type Recipe db.Recipes
+type Recipe db.Recipe
 
 func (u *Recipe) TableName() string {
-	return "recipesV1"
+	return "recipe"
 }

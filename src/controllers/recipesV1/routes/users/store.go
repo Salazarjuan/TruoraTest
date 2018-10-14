@@ -1,9 +1,9 @@
 package users
 
 import (
-	Users "Projects/TruoraTest/src/controllers/recipesv1/models/users"
-	DB "Projects/TruoraTest/src/systems/db"
-	Passwords "Projects/TruoraTest/src/systems/passwords"
+	Users "Projects/TruoraTest-server/src/controllers/recipesV1/models/users"
+	DB "Projects/TruoraTest-server/src/systems/db"
+	Passwords "Projects/TruoraTest-server/src/systems/passwords"
 
 	"encoding/json"
 	"log"
@@ -16,16 +16,16 @@ func Store(w http.ResponseWriter, r *http.Request) {
 	user.First = r.PostFormValue("first")
 	user.Last = r.PostFormValue("last")
 	user.Email = r.PostFormValue("email")
-	password := r.PostFormValue("password")
+	user.Password = r.PostFormValue("password")
 
-	encryptedPassword, err := Passwords.Encrypt(password)
+	encryptedPassword, err := Passwords.Encrypt(user.Password)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Unable to encrypt password", http.StatusInternalServerError)
 		return
 	}
 
-	user.Password = encryptedPassword
+	encryptedPassword = encryptedPassword
 
 	if err = DB.Store(db, &user); err != nil {
 		log.Println(err)

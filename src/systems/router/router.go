@@ -1,8 +1,8 @@
 package router
 
 import (
-	"Projects/TruoraTest/pkg/types/routes"
-	RecipesSubRoutes "Projects/TruoraTest/src/controllers/recipesV1/router"
+	"Projects/TruoraTest-server/pkg/types/routes"
+	RecipesSubRoutes "Projects/TruoraTest-server/src/controllers/recipesV1/router"
 
 	"github.com/go-xorm/xorm"
 	"github.com/gorilla/mux"

@@ -1,15 +1,15 @@
 package router
 
 import (
-	"Projects/TruoraTest/pkg/types/routes"
+	"Projects/TruoraTest-server/pkg/types/routes"
 
 	"github.com/go-xorm/xorm"
 
-	//AuthHandler "Projects/TruoraTest/src/controllers/auth"
+	//AuthHandler "Projects/TruoraTest-server/src/controllers/auth"
 	"log"
 	"net/http"
-	HomeHandler "Projects/TruoraTest/src/controllers/home"
-	RecipeHandler "Projects/TruoraTest/src/controllers/recipesV1/routes/recipes"
+	HomeHandler "Projects/TruoraTest-server/src/controllers/home"
+	RecipeHandler "Projects/TruoraTest-server/src/controllers/recipesV1/routes/recipes"
 )
 
 func Middleware(next http.Handler) http.Handler {

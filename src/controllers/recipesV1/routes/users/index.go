@@ -1,15 +1,18 @@
 package users
 
 import (
-	Users "Projects/TruoraTest/src/controllers/recipesv1/models/users"
+	Users "Projects/TruoraTest-server/src/controllers/recipesV1/models/users"
+	"log"
 
 	"encoding/json"
-	"log"
 	"net/http"
 	"strconv"
 )
 
+var user Users.User
+
 func Index(w http.ResponseWriter, r *http.Request) {
+
 	var offset int
 	limit := int(25)
 

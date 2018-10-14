@@ -1,8 +1,8 @@
 package users
 
 import (
-	Users "Projects/TruoraTest/src/controllers/recipesv1/models/users"
-	DB "Projects/TruoraTest/src/systems/db"
+	Users "Projects/TruoraTest-server/src/controllers/recipesV1/models/users"
+	DB "Projects/TruoraTest-server/src/systems/db"
 
 	"encoding/json"
 	"github.com/gorilla/mux"

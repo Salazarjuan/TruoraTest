@@ -1,12 +1,12 @@
 package router
 
 import (
-	"log"
 	"net/http"
 
-	"Projects/TruoraTest/pkg/types/routes"
-	RecipeHandler "Projects/TruoraTest/src/controllers/recipesV1/routes/recipes"
-
+	"Projects/TruoraTest-server/pkg/types/routes"
+	RecipeHandler "Projects/TruoraTest-server/src/controllers/recipesV1/routes/recipes"
+	StepHandler "Projects/TruoraTest-server/src/controllers/recipesV1/routes/steps"
+	UsersHandler "Projects/TruoraTest-server/src/controllers/recipesV1/routes/users"
 	"github.com/go-xorm/xorm"
 )
 
@@ -26,7 +26,7 @@ func Middleware(next http.Handler) http.Handler {
 			return
 		}*/
 
-		log.Println("Inside recipesV1 Middleware")
+		//log.Println("Inside controller Middleware")
 
 		next.ServeHTTP(w, r)
 	})
@@ -37,16 +37,38 @@ func GetRoutes(DB *xorm.Engine) (SubRoute map[string]routes.SubRoutePackage) {
 	db = DB
 
 	RecipeHandler.Init(DB)
+	UsersHandler.Init(DB)
+	StepHandler.Init(DB)
 
 	/* ROUTES */
 	SubRoute = map[string]routes.SubRoutePackage{
-		"/recipesV1": {
+		"/recipes": {
 			Routes: routes.Routes{
 				routes.Route{"RecipeIndex", "GET", "/", RecipeHandler.Index},
 				routes.Route{"RecipeCreate", "POST", "/store", RecipeHandler.Store},
 				routes.Route{"RecipeEdit", "GET", "/{id}/edit", RecipeHandler.Edit},
 				routes.Route{"RecipeUpdate", "PUT", "/{id}", RecipeHandler.Update},
 				routes.Route{"RecipeDestroy", "DELETE", "/{id}", RecipeHandler.Destroy},
+			},
+			Middleware: Middleware,
+		},
+		"/users": {
+			Routes: routes.Routes{
+				routes.Route{"userseIndex", "GET", "/", UsersHandler.Index},
+				routes.Route{"usersCreate", "POST", "/store", UsersHandler.Store},
+				routes.Route{"usersEdit", "GET", "/{id}/edit", UsersHandler.Edit},
+				routes.Route{"usersUpdate", "PUT", "/{id}", UsersHandler.Update},
+				routes.Route{"usersDestroy", "DELETE", "/{id}", UsersHandler.Destroy},
+			},
+			Middleware: Middleware,
+		},
+		"/steps	": {
+			Routes: routes.Routes{
+				routes.Route{"stepIndex", "GET", "/", StepHandler.Index},
+				routes.Route{"stepCreate", "POST", "/store", StepHandler.Store},
+				routes.Route{"stepEdit", "GET", "/{id}/edit", StepHandler.Edit},
+				routes.Route{"stepUpdate", "PUT", "/{id}", StepHandler.Update},
+				routes.Route{"stepDestroy", "DELETE", "/{id}", StepHandler.Destroy},
 			},
 			Middleware: Middleware,
 		},

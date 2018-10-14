@@ -2,7 +2,7 @@ package session
 
 import (
 "github.com/go-xorm/xorm"
-Users "Projects/TruoraTest/pkg/types/users"
+Users "Projects/TruoraTest-server/pkg/types/users"
 )
 
 var db *xorm.Engine

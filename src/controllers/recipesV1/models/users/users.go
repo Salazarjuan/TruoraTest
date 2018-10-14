@@ -1,6 +1,6 @@
 package users
 
-import "Projects/TruoraTest/pkg/db"
+import "Projects/TruoraTest-server/pkg/db"
 
 type Users []User
 

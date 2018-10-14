@@ -3,6 +3,7 @@ package db
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
+	"log"
 )
 
 func Connect(host string, port string, user string, pass string, database string, options string) (db *xorm.Engine, err error) {
@@ -28,6 +29,7 @@ func Update(DB *xorm.Engine, id int64, model interface{}) (err error) {
 }
 
 func Store(DB *xorm.Engine, model interface{}) (err error) {
+	log.Println(model)
 	_, err = DB.Insert(model)
 	return
 }

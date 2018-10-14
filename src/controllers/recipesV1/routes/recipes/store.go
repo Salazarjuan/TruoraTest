@@ -1,8 +1,8 @@
 package recipes
 
 import (
-	Recipes "Projects/TruoraTest/src/controllers/recipesV1/models/recipes"
-	DB "Projects/TruoraTest/src/systems/db"
+	Recipes "Projects/TruoraTest-server/src/controllers/recipesV1/models/recipes"
+	DB "Projects/TruoraTest-server/src/systems/db"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -11,40 +11,60 @@ import (
 
 func Store(w http.ResponseWriter, r *http.Request) {
 	var recipe Recipes.Recipe
+	r.ParseForm()
 
-	recipe.Name = r.PostFormValue("name")
+	name := r.PostFormValue("name")
+	description := r.PostFormValue("description")
+	oven := r.PostFormValue("oven")
+	time := r.PostFormValue("time")
+	noPersons := r.PostFormValue("noPersons")
+	creatorID := r.PostFormValue("creatorID")
 
-	recipe.Description = r.PostFormValue("description")
+	log.Println(r)
+	log.Println(name)
+	log.Println(description)
+	log.Println(oven)
+	log.Println(time)
+	log.Println(noPersons)
 
-	if r.PostFormValue("oven") == "true"{
-		recipe.Oven = 0
-	}else {
-		recipe.Oven = 1
-	}
+	recipe.Name = name
 
-	i, err := strconv.ParseInt(r.PostFormValue("time"), 10, 64)
+	recipe.Description = description
+
+	recipe.Oven = oven
+
+	log.Println("parsing time")
+	i, err := strconv.ParseInt(time, 10, 64)
 	if err != nil {
 		panic(err)
 	}
 	recipe.Time = i
 
-	i, err = strconv.ParseInt(r.PostFormValue("noPersons"), 10, 64)
+	log.Println("parsing noPersons")
+	i, err = strconv.ParseInt(noPersons, 10, 64)
 	if err != nil {
 		panic(err)
 	}
 	recipe.NoPersons = i
 
+	log.Println("parsing creatorID")
+	i, err = strconv.ParseInt(creatorID, 10, 64)
+	if err != nil {
+		panic(err)
+	}
+	recipe.CreatorID = i
+
 	packet, err := json.Marshal(recipe)
 	if err = DB.Store(db, recipe); err != nil {
 		log.Println(err)
-		http.Error(w, "Unable to store users", http.StatusInternalServerError)
+		http.Error(w, "Unable to store recipe", http.StatusInternalServerError)
 		return
 	}
 
 	packet, err = json.Marshal(recipe)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Unable to parse users", http.StatusUnauthorized)
+		http.Error(w, "Unable to parse recipes", http.StatusUnauthorized)
 		return
 	}
 
